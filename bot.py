@@ -1,6 +1,6 @@
 import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, filters
 import requests
 
 # Enable logging
@@ -57,7 +57,7 @@ def main():
     dp.add_handler(CallbackQueryHandler(search_song, pattern='search'))
 
     # Message Handlers
-    dp.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
+    dp.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))  # Updated filter syntax
 
     # Error Handler
     dp.add_error_handler(error)
